@@ -3,19 +3,11 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
-function mapStateToProps(state) {
-    return {
-        email: state.posts.email
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        fetchPosts: bindActionCreators(fetchPosts, dispatch)
-    };
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(store => ({
+    posts: store.posts
+}), {
+    fetchPosts
+})
 
 export default class PostsList extends Component {
     constructor(props) {
@@ -27,15 +19,14 @@ export default class PostsList extends Component {
     }
 
     render() {
+        const { email } = this.props.posts
+
         return (
             <div className="container">
                 <form>
                     <div className="form-group">
                         <label htmlFor="">email</label>
-                        <input type="text" className="form-control" />
-                    </div>
-                    <div className="section">
-                        {this.props.email}
+                        <input type="text" className="form-control" value={email} />
                     </div>
                 </form>
             </div>
