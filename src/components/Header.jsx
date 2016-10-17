@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 export default class Header extends Component {
-    static contextTypes = {
-        router: PropTypes.object
-    }
+    // static contextTypes = {
+    //     router: PropTypes.object
+    // }
 
     render() {
         return (
@@ -12,15 +12,15 @@ export default class Header extends Component {
                 <div id="navbar" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav navbar-right">
                         <li>
-                            <Link to="/new-post">New Post</Link>
+                            <Link to="post/new">New Post</Link>
                         </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-left">
                         <li>
-                            <Link to="/movies">Movies</Link>
+                            <Link to="movies">Movies</Link>
                         </li>
                         <li>
-                            <Link to="/react-china">React-China</Link>
+                            <Link to="react-china">React-China</Link>
                         </li>
                     </ul>
                 </div>

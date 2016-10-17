@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { fetchPosts } from '../actions/index';
-import { bindActionCreators } from 'redux';
+import Header from './Header';
 
 @connect(store => ({
     posts: store.posts.posts
@@ -19,7 +20,10 @@ export default class PostsList extends Component {
     }
 
     render() {
-        const posts = this.props.posts.map((post, index) => 
+        let posts = this.props.posts.filter((post, index) =>
+            Object.keys(post).includes('title')
+        );
+        posts = posts.map((post, index) =>
             <li className="list-group-item" key={index}>
                 <h3>
                     <a href="#">{post.title}</a>
@@ -30,15 +34,13 @@ export default class PostsList extends Component {
         )
 
         return (
-            <div className="section" style={{marginTop: 20}}>
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="">email</label>
-                        <input type="text" className="form-control" />
-                    </div>
+            <div>
+                <Header />
+                <div className="section" style={{marginTop: 20}}>
                     { posts }
-                </form>
+                </div>
             </div>
+            
         )
     }
 }

@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var timestamps = require('mongoose-timestamp');
 var init = require('./init.js');
 
 mongoose.connect('mongodb://localhost/posts');
@@ -17,7 +18,9 @@ var postSchema = mongoose.Schema({
     title: String,
     content: String,
     date: Number
-})
+});
+
+postSchema.plugin(timestamps)
 
 var Posts = mongoose.model('posts', postSchema);
 
