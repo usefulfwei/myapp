@@ -1,11 +1,11 @@
 import CONST from '../constants';
 
-function posts(state = {}, action) {
+function posts(state = { posts: [] }, action) {
     switch(action.type) {
         case CONST.FETCH_POSTS:
             return {
                 ...state,
-                email: action.email
+                posts: action.posts
             }
         default:
             return state;
