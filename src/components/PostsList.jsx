@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { fetchPosts } from '../actions/index';
 import Header from './Header';
@@ -20,13 +21,11 @@ export default class PostsList extends Component {
     }
 
     render() {
-        let posts = this.props.posts.filter((post, index) =>
-            Object.keys(post).includes('title')
-        );
-        posts = posts.map((post, index) =>
+        let posts = this.props.posts.map((post, index) =>
             <li className="list-group-item" key={index}>
                 <h3>
-                    <a href="#">{post.title}</a>
+                    <Link to={`post/${post._id}`}>{ post.title }</Link>
+                    <Link to={`post/new/${post._id}`}><span className="label label-warning pull-right">Edit</span></Link> 
                 </h3>
                 <span>{ post.date }</span>
                 <p>{ post.content }</p>

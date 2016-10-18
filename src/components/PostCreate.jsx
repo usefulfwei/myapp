@@ -2,11 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import classname from 'classnames';
 import { connect } from 'react-redux';
 
-import { createPost } from '../actions/index';
+import { createPost, fetchPost, updatePost } from '../actions/index';
 import Header from './Header';
 
-@connect(null, {
-    createPost
+@connect(store => ({
+    post: store.posts.post
+}), {
+    createPost, fetchPost, updatePost
 })
 export default class PostCreate extends Component {
     constructor(props) {
@@ -15,12 +17,32 @@ export default class PostCreate extends Component {
             title: '',
             content: '',
             hasTitleError: false,
-            hasContentError: false
+            hasContentError: false,
+            isEdit: false
         }
     }
 
     static contextTypes = {
         router: PropTypes.object
+    }
+
+    componentDidMount() {
+        let id = this.props.params.id;
+        if (!id) return false;
+
+        this.setState({
+            isEdit: true
+        });
+
+        this.props.fetchPost(id);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { title, content } = nextProps.post
+        this.setState({
+            title,
+            content
+        })
     }
 
     handleChange(state, event) {
@@ -31,7 +53,7 @@ export default class PostCreate extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const { title, content } = this.state;
+        const { title, content, isEdit } = this.state;
 
         if (!title.trim()) {
             this.setState({ hasTitleError: true });
@@ -48,11 +70,17 @@ export default class PostCreate extends Component {
 
         const data = {title, content},
             router = this.context.router;
-        this.props.createPost(data, router);
+
+        if (!isEdit) {
+            this.props.createPost(data, router);
+        } else {
+            this.props.updatePost(data, this.props.params.id, router);
+        }
+        
     }
 
     render() {
-        const { title, hasTitleError, content, hasContentError } = this.state;
+        const { title, hasTitleError, content, hasContentError, isEdit } = this.state;
         const necessary = (
             <span style={{color: '#f00'}}>*</span>
         );
@@ -71,7 +99,7 @@ export default class PostCreate extends Component {
                         <textarea rows="10" className="form-control" value={this.state.content} onChange={this.handleChange.bind(this, 'content')} />
                         <span className={classname({'hidden': !hasContentError}, { 'help-block': hasContentError })}>Required</span>
                     </div>
-                    <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Submit</button>
+                    <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>{isEdit ? 'Update' : 'Submit'}</button>
                 </form>
             </div>
             

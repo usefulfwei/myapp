@@ -21,7 +21,7 @@ export function fetchPosts() {
 
 export function createPost(data, router) {
     return async (dispatch) => {
-        const posts = await axios.post(`${BASE_URL}/posts/new`, {
+        const post = await axios.post(`${BASE_URL}/posts/new`, {
             title: data.title,
             content: data.content
         })
@@ -30,7 +30,53 @@ export function createPost(data, router) {
                 console.log(err.message);
                 return null
             });
-        if (posts.code === 0) {
+        if (post.code === 0) {
+            router.push('/');
+        }
+    }
+}
+
+export function updatePost(data, id, router) {
+    return async (dispatch) => {
+        const post = await axios.put(`${BASE_URL}/posts/new/${id}`, {
+            title: data.title,
+            content: data.content
+        })
+            .then(response => response.data)
+            .catch(err => {
+                console.log(err.message);
+                return null
+            });
+        if (post.code === 0) {
+            router.push('/');
+        }
+    }
+}
+
+export function fetchPost(id) {
+    return async (dispatch) => {
+        const post = await axios.get(`${BASE_URL}/posts/${id}`)
+            .then(response => response.data)
+            .catch(err => {
+                console.log(err.message);
+                return null;
+            });
+        dispatch({
+            type: CONST.FETCH_POST,
+            post
+        })
+    }
+}
+
+export function deletePost(id, router) {
+    return async (dispatch) => {
+        const data = await axios.delete(`${BASE_URL}/posts/${id}`)
+            .then(response => response.data)
+            .catch(err => {
+                console.log(err.message);
+                return null;
+            });
+        if (data.code === 0) {
             router.push('/');
         }
     }
