@@ -18,12 +18,11 @@ var postSchema = mongoose.Schema({
     content: String,
     date: Number
 });
-
 var Posts = mongoose.model('posts', postSchema);
-
+var posts = new Posts(init.posts);
 Posts.find(null, function(err, doc) {
     if (err) {
-        console.log(err)
+        console.log(err);
     } else {
         if (!doc[0]) {
             posts.save(function(err, doc) {
@@ -34,8 +33,27 @@ Posts.find(null, function(err, doc) {
     }
 })
 
-var posts = new Posts(init.posts);
+var moviesSchema = mongoose.Schema({
+    title: String,
+    link: String,
+    date: Number
+});
+var Movies = mongoose.model('movies', moviesSchema);
+var movie = new Movies(init.movies);
+Movies.find(null, function(err, doc) {
+    if (err) {
+        console.log(err);
+    } else {
+        if (!doc[0]) {
+            movie.save(function(err, doc) {
+                if (err) console.log(err)
+                console.log(doc);
+            })
+        }
+    }
+})
 
 module.exports = {
-    Posts: Posts
+    Posts,
+    Movies
 }

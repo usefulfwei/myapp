@@ -25,19 +25,20 @@ export default class PostsList extends Component {
             <li className="list-group-item" key={index}>
                 <h3>
                     <Link to={`post/${post._id}`}>{ post.title }</Link>
-                    <Link to={`post/new/${post._id}`}><span className="label label-warning pull-right">Edit</span></Link> 
+                    <Link to={`post/new/${post._id}`} className="pull-right label label-warning" style={{paddingTop: '.4em'}}>Edit</Link>
                 </h3>
                 <span>{ post.date }</span>
                 <p>{ post.content }</p>
+                
             </li>
         )
 
         return (
             <div>
                 <Header />
-                <div className="section" style={{marginTop: 20}}>
+                <ul className="list-group">
                     { posts }
-                </div>
+                </ul>
             </div>
             
         )

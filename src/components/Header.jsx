@@ -23,7 +23,7 @@ export default class Header extends Component {
 
         return (
             <nav className="navbar navbar-default">
-                <div id="navbar" className="navbar-collapse collapse">
+                <div id="navbar" className="navbar-collapse">
                     <ul className="nav navbar-nav navbar-left">
                         { home }
                         { this.props.type === 'post' ? deletePost : newPost }

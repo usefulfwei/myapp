@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import PostsList from './components/PostsList';
 import PostCreate from './components/PostCreate';
 import Post from './components/Post';
+import Movies from './components/Movies';
 
 export default (
     <Route path="/" component={Layout}>
@@ -12,5 +13,6 @@ export default (
         <Route path="post/new" component={PostCreate} />
         <Route path="post/new/:id" component={PostCreate} />
         <Route path="post/:id" component={Post} />
+        <Route path="movies" component={Movies} />
     </Route>
 )
