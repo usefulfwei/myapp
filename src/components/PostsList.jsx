@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 import { fetchPosts } from '../actions/index';
 import Header from './Header';
 
+import { formatDate } from '../libs/format';
+
 @connect(store => ({
     posts: store.posts.posts
 }), {
@@ -27,9 +29,9 @@ export default class PostsList extends Component {
                     <Link to={`post/${post._id}`}>{ post.title }</Link>
                     <Link to={`post/new/${post._id}`} className="pull-right label label-warning" style={{paddingTop: '.4em'}}>Edit</Link>
                 </h3>
-                <span>{ post.date }</span>
+                <small>{ formatDate(post.date) }</small>
+                <hr style={{marginTop: 0}}/>
                 <p>{ post.content }</p>
-                
             </li>
         )
 

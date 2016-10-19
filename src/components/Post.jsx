@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import { fetchPost, deletePost } from '../actions/index';
 
+import { formatDate } from '../libs/format';
+
 @connect(store => ({
     post: store.posts.post
 }), {
@@ -25,11 +27,16 @@ export default class Post extends Component {
 
     render() {
         const { title, date, content } = this.props.post;
+        const style = {
+            textAlign: 'center'
+        };
+
         return (
             <div>
                 <Header type="post" onClick={this.handleDelete.bind(this)} />
-                <h2>{ title }</h2>
-                <p>{ date }</p>
+                <h2 style={style}>{ title }</h2>
+                <p style={style}>{ formatDate(date) }</p>
+                <hr/>
                 <p>{ content }</p>
             </div>
         )
