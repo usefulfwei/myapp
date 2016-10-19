@@ -87,7 +87,7 @@ export default class PostCreate extends Component {
 
         return (
             <div>
-                <Header />
+                <Header type="new-post" />
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className={classname('form-group', { 'has-error': hasTitleError })}>
                         <label>Title { necessary }</label>

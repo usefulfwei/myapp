@@ -21,19 +21,41 @@ export default class Header extends Component {
             </li>
         )
 
+        const postNavbar = () => {
+            switch(this.props.type) {
+                case 'show-post':
+                    return (
+                        <ul className="nav navbar-nav navbar-left">
+                            { home }
+                            { deletePost }
+                        </ul>
+                    );
+                case 'new-post':
+                    return (
+                        <ul className="nav navbar-nav navbar-left">
+                            { home }
+                        </ul>
+                    );
+                default:
+                    return (
+                        <ul className="nav navbar-nav navbar-left">
+                            { home }
+                            { newPost }
+                        </ul>
+                    );
+            }
+        };
+
         return (
             <nav className="navbar navbar-default">
                 <div id="navbar" className="navbar-collapse">
-                    <ul className="nav navbar-nav navbar-left">
-                        { home }
-                        { this.props.type === 'post' ? deletePost : newPost }
-                    </ul>
+                    { postNavbar() }
                     <ul className="nav navbar-nav navbar-right">
                         <li>
                             <Link to="/movies">Movies</Link>
                         </li>
                         <li>
-                            <Link to="/react-china">React-China</Link>
+                            <a href="javascript:;" onClick={() => { alert("I'm sorry. \nIt hasn't be developed."); }}>React-China</a>
                         </li>
                     </ul>
                 </div>

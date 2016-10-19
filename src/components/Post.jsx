@@ -27,17 +27,14 @@ export default class Post extends Component {
 
     render() {
         const { title, date, content } = this.props.post;
-        const style = {
-            textAlign: 'center'
-        };
 
         return (
             <div>
-                <Header type="post" onClick={this.handleDelete.bind(this)} />
-                <h2 style={style}>{ title }</h2>
-                <p style={style}>{ formatDate(date) }</p>
+                <Header type="show-post" onClick={this.handleDelete.bind(this)} />
+                <h2 className="text-center">{ title }</h2>
+                <p className="text-center">{ formatDate(date) }</p>
                 <hr/>
-                <p>{ content }</p>
+                <p className="text-center">{ content }</p>
             </div>
         )
     }
