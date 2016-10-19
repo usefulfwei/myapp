@@ -12,5 +12,6 @@
     - 终端1：npm start
     - 终端2：npm run dev
 - 截图
-<img src="https://github.com/u14e/myapp/displayImg/1.png" alt="airticle" />
-<img src="https://github.com/u14e/myapp/displayImg/2.png" alt="movies" />
+
+![airticle](./displayImg/1.png)
+![movies](./displayImg/2.png)
