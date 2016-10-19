@@ -1,8 +1,9 @@
 ## myapp
 
 功能：
-    - 数据库的CRUD
-    - node爬取电影天堂前30部电影
+
+- 数据库的CRUD
+- node爬取电影天堂前30部电影
 
 安装mongodb、node（6.2.0以上）
 
