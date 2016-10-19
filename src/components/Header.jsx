@@ -11,7 +11,7 @@ export default class Header extends Component {
 
         const newPost = (
             <li>
-                <Link to="post/new">New Post</Link>
+                <Link to="/post/new">New Post</Link>
             </li>
         );
 
@@ -30,10 +30,10 @@ export default class Header extends Component {
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li>
-                            <Link to="movies">Movies</Link>
+                            <Link to="/movies">Movies</Link>
                         </li>
                         <li>
-                            <Link to="react-china">React-China</Link>
+                            <Link to="/react-china">React-China</Link>
                         </li>
                     </ul>
                 </div>
