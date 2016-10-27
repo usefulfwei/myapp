@@ -6,6 +6,7 @@ import PostsList from './components/PostsList';
 import PostCreate from './components/PostCreate';
 import Post from './components/Post';
 import Movies from './components/Movies';
+import Ruby from './components/ruby/Home';
 
 export default (
     <Route path="/" component={Layout}>
@@ -14,5 +15,6 @@ export default (
         <Route path="post/new/:id" component={PostCreate} />
         <Route path="post/:id" component={Post} />
         <Route path="movies" component={Movies} />
+        <Route path="ruby-china" component={Ruby} />
     </Route>
 )

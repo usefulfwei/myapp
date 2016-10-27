@@ -55,7 +55,7 @@ export default class Header extends Component {
                             <Link to="/movies">Movies</Link>
                         </li>
                         <li>
-                            <a href="javascript:;" onClick={() => { alert("I'm sorry. \nIt hasn't be developed."); }}>React-China</a>
+                            <Link to="/ruby-china">Ruby-China</Link>
                         </li>
                     </ul>
                 </div>
