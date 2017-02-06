@@ -39,9 +39,11 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
+    devtool: 'source-map',
     devServer: {
         hot: true,
         inline: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        displayErrorDetails: true,
     }
 }

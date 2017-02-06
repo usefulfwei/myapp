@@ -1,12 +1,16 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRoot from './containers/appRoot';
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
 import configureStore from './store/configureStore';
+
+import routes from './routes';
 
 const store = configureStore();
 
-ReactDOM.render(
-    <AppRoot store={store}/>,
-	document.querySelector('#app')
-);
+ReactDOM.render((
+    <Provider store={store}>
+        <Router history={browserHistory} routes={routes}/>
+    </Provider>
+), document.querySelector('#app'));
