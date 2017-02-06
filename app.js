@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var proxy = require('http-proxy-middleware');
 
 // var routes = require('./routes/index');
 var posts = require('./routes/posts');
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', routes);
 app.use('/posts', posts);
 app.use('/movies', movies);
+app.use('/api', proxy({target: 'https://ruby-china.org/', changeOrigin: true}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
